@@ -1,5 +1,36 @@
 @import 'src/scss/variables';
 
 .add-article-page {
-	
+    .article-editor:not(:empty) {
+        padding: 0 40px;
+        border: 1px var(--tertiaryColor) solid;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .editor-header {
+        > ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            > li {
+                display: inline-block;
+
+                button {
+                    border: none;
+                    padding: 5px;
+                    background: none;
+                }
+
+                .divider {
+                    background-color: rgba(#000, 0.1);
+                    height: 1.25rem;
+                    margin-left: 0.5rem;
+                    margin-right: 0.75rem;
+                    width: 2px;
+                }
+            }
+        }
+    }
 }

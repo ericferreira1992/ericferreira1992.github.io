@@ -22,9 +22,7 @@
             "dom"
         ],
         "paths": {
-            "src/*": ["./src/*"],
-            "@nimble-ts/core/style.scss": ["../nimble/src/src/style.scss"],
-            "@nimble-ts/core": ["../nimble/src/src/*"]
+            "src/*": ["./src/*"]
         }
     },
     "include": [

@@ -3,5 +3,31 @@
 		Carregando artigo...
 	</div>
 	
+	<section class="article-editor">
+		<div @if="editor != null" class="editor-header">
+			<ul>
+				<li @for="var item of editorMenu">
+					<button @if="item.type !== 'divider'"
+						class="menu-item"
+						[class]="{ 'is-active': item.isActive && item.isActive() }"
+						(click)="item.action && item.action()"
+						title="{{item.title}}"
+					>
+						🙏🏼
+					</button>
+					<div @if="item.type === 'divider'" className="divider"></div>
+				</li>
+			</ul>
+		</div>
+		<div id="editor"></div>
+	</section>
 	
+	<div class="text-right">
+		<button class="btn primary-out" (click)="cancel()">
+			Cancelar
+		</button>
+		<button class="btn primary m-l-1" (click)="save()">
+			Salvar
+		</button>
+	</div>
 </div>

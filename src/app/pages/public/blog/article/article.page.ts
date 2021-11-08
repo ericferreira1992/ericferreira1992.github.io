@@ -9,7 +9,6 @@ import { AuthGuestDialog } from 'src/app/dialogs/auth-guest/auth-guest.dialog';
 import { DialogBuilder } from '@nimble-ts/core/dialog';
 import { CommentLike } from '../models/comment-like.model';
 import { ConfirmDialog } from 'src/app/dialogs/confirm/confirm.dialog';
-// import * as Quill from 'quill';
 
 @PreparePage({
 	template: require('./article.page.html'),
@@ -23,8 +22,6 @@ export class ArticlePage extends Page {
 	public addingCommment: boolean = false;
 	public article: Article = null;
 	public comments: Comment[] = [];
-
-	// private commentEditor: Quill;
 
 	public commentForm = new Form({
 		content: {
