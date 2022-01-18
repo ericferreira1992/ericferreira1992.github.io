@@ -22,6 +22,17 @@ body > nimble-root > nimble-page {
     position: relative;
 }
 
+blockquote {
+    border-left: 2px solid var(--tertiaryColor);
+    padding-left: 1rem;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid var(--tertiaryColor);
+    margin: 2rem 0;
+}
+
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
@@ -37,7 +48,9 @@ h4 { font-size: 20px; }
 h5 { font-size: 18px; }
 h6 { font-size: 15px; }
 
-* {
+*,
+*::after,
+*::before {
 	box-sizing: border-box;
 }
 

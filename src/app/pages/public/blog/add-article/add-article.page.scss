@@ -1,6 +1,7 @@
 @import 'src/scss/variables';
 
 .add-article-page {
+
     .article-editor:not(:empty) {
         padding: 0 40px;
         border: 1px var(--tertiaryColor) solid;
@@ -8,7 +9,21 @@
         margin-bottom: 20px;
     }
 
+    #editor {
+        padding: 20px 0;
+
+        > div {
+            outline: 0;
+            min-height: 360px;
+        }
+    }
+
     .editor-header {
+        width: calc(100% + 80px);
+        margin: 0 -40px;
+        padding: 5px 10px;
+        border-bottom: 1px var(--tertiaryColor) solid;
+
         > ul {
             margin: 0;
             padding: 0;
@@ -16,18 +31,38 @@
 
             > li {
                 display: inline-block;
+                padding: 2px;
 
                 button {
+                    color: var(--textColor);
+                    display: flex;
+                    align-items: center;
+                    align-content: center;
+                    cursor: pointer;
                     border: none;
-                    padding: 5px;
+                    border-radius: 4px;
+                    padding: 2px;
                     background: none;
+
+                    > i {
+                        width: 24px;
+                    }
+
+                    &:hover,
+                    &:active {
+                        background-color: var(--tertiaryColor);
+                    }
+
+                    &.is-active {
+                        background-color: var(--textColor);
+                        color: var(--backgroundColor);
+                    }
                 }
 
                 .divider {
-                    background-color: rgba(#000, 0.1);
-                    height: 1.25rem;
-                    margin-left: 0.5rem;
-                    margin-right: 0.75rem;
+                    background-color: var(--tertiaryColor);;
+                    height: 20px;
+                    margin: 0 4px 0 4px;
                     width: 2px;
                 }
             }

@@ -1,9 +1,10 @@
-<div  class="add-article-page">
+<div  class="add-article-page animated fadeIn">
 	<div @if="loading" class="loading">
 		Carregando artigo...
 	</div>
+	<h2 @if="!loading && !editing" class="mb-7">Novo artigo</h2>
 	
-	<section class="article-editor">
+	<section @if="!loading" class="article-editor">
 		<div @if="editor != null" class="editor-header">
 			<ul>
 				<li @for="var item of editorMenu">
@@ -13,16 +14,16 @@
 						(click)="item.action && item.action()"
 						title="{{item.title}}"
 					>
-						🙏🏼
+						<i class="material-icons">{{item.icon}}</i> 
 					</button>
-					<div @if="item.type === 'divider'" className="divider"></div>
+					<div @if="item.type === 'divider'" class="divider"></div>
 				</li>
 			</ul>
 		</div>
 		<div id="editor"></div>
 	</section>
 	
-	<div class="text-right">
+	<div @if="!loading" class="text-right">
 		<button class="btn primary-out" (click)="cancel()">
 			Cancelar
 		</button>

@@ -7,6 +7,12 @@ import { Page, PreparePage } from '@nimble-ts/core/page';
 })
 export class AboutMePage extends Page {
 
+    public get years() {
+        var ageDifMs = Date.now() - new Date(1992, 2, 6).getTime();
+        var ageDate = new Date(ageDifMs);
+        return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
+
     constructor() {
         super();
     }

@@ -6,11 +6,9 @@ import { Article } from '../models/article.model';
 
 // import * as Quill from 'quill';
 import { Editor } from '@tiptap/core';
-// import StarterKit from '@tiptap/starter-kit';
-import Document from '@tiptap/extension-document'
-import Paragraph from '@tiptap/extension-paragraph'
-import Text from '@tiptap/extension-text'
+import Document from '@tiptap/extension-document';
 import StarterKit from '@tiptap/starter-kit';
+import Highlight from '@tiptap/extension-highlight'
 
 @PreparePage({
 	template: require('./add-article.page.html'),
@@ -65,75 +63,96 @@ export class AddArticlePage extends Page {
 		this.render(() => {
 			this.editor = new Editor({
 				element: document.querySelector('#editor'),
+				autofocus: true,
 				extensions: [
-					StarterKit,
-					/* Document,
-					Paragraph,
-					Text, */
+					Document.extend({
+						content: 'heading block*',
+					}),
+					StarterKit.configure({
+						document: false,
+					}),
+					Highlight,
 				],
-				content: localStorage.getItem('ericferreira1992_draft_article') ?? '<p>Hello World!</p>',
+				onCreate: () => {
+					this.editor.chain().setTextSelection(this.editor.getCharacterCount() + 1).run();
+				},
+				content: localStorage.getItem('ericferreira1992_draft_article') ?? '<h1>Título</h1><p>Subtítulo</p>',
+				onUpdate: () => {
+					this.render();
+					console.log('UPDATE');
+				},
+				onSelectionUpdate: () => {
+					this.render();
+					console.log('SELETION');
+				},
 			});
 			this.editorMenu = [
 				{
-					icon: 'bold',
-					title: 'Bold',
+					icon: 'format_bold',
+					title: 'Negrito',
 					action: () => this.editor.chain().focus().toggleBold().run(),
 					isActive: () => this.editor.isActive('bold'),
 				  },
 				  {
-					icon: 'italic',
-					title: 'Italic',
+					icon: 'format_italic',
+					title: 'Itálico',
 					action: () => this.editor.chain().focus().toggleItalic().run(),
 					isActive: () => this.editor.isActive('italic'),
 				  },
 				  {
-					icon: 'strikethrough',
-					title: 'Strike',
+					icon: 'strikethrough_s',
+					title: 'Cortado',
 					action: () => this.editor.chain().focus().toggleStrike().run(),
 					isActive: () => this.editor.isActive('strike'),
 				  },
 				  {
-					icon: 'code-view',
-					title: 'Code',
+					icon: 'code',
+					title: 'Código',
 					action: () => this.editor.chain().focus().toggleCode().run(),
+					isActive: () => this.editor.isActive('code'),
+				  },
+				  {
+					icon: 'highlight',
+					title: 'Destacar',
+					action: () => this.editor.chain().focus().toggleHighlight().run(),
 					isActive: () => this.editor.isActive('code'),
 				  },
 				  {
 					type: 'divider',
 				  },
 				  {
-					icon: 'h-1',
-					title: 'Heading 1',
+					icon: 'title',
+					title: 'Título tamanho 1',
 					action: () => this.editor.chain().focus().toggleHeading({ level: 1 }).run(),
 					isActive: () => this.editor.isActive('heading', { level: 1 }),
 				  },
 				  {
-					icon: 'h-2',
-					title: 'Heading 2',
+					icon: 'title',
+					title: 'Título tamanho 2',
 					action: () => this.editor.chain().focus().toggleHeading({ level: 2 }).run(),
 					isActive: () => this.editor.isActive('heading', { level: 2 }),
 				  },
 				  {
-					icon: 'paragraph',
-					title: 'Paragraph',
+					icon: 'format_textdirection_l_to_r',
+					title: 'Parágrafo',
 					action: () => this.editor.chain().focus().setParagraph().run(),
 					isActive: () => this.editor.isActive('paragraph'),
 				  },
 				  {
-					icon: 'list-unordered',
-					title: 'Bullet List',
+					icon: 'format_list_bulleted',
+					title: 'Lista normal',
 					action: () => this.editor.chain().focus().toggleBulletList().run(),
 					isActive: () => this.editor.isActive('bulletList'),
 				  },
 				  {
-					icon: 'list-ordered',
-					title: 'Ordered List',
+					icon: 'format_list_numbered',
+					title: 'Lista ordenada',
 					action: () => this.editor.chain().focus().toggleOrderedList().run(),
 					isActive: () => this.editor.isActive('orderedList'),
 				  },
 				  {
-					icon: 'code-box-line',
-					title: 'Code Block',
+					icon: 'integration_instructions',
+					title: 'Bloco de códigos',
 					action: () => this.editor.chain().focus().toggleCodeBlock().run(),
 					isActive: () => this.editor.isActive('codeBlock'),
 				  },
@@ -141,39 +160,39 @@ export class AddArticlePage extends Page {
 					type: 'divider',
 				  },
 				  {
-					icon: 'double-quotes-l',
-					title: 'Blockquote',
+					icon: 'format_quote',
+					title: 'Comentário',
 					action: () => this.editor.chain().focus().toggleBlockquote().run(),
 					isActive: () => this.editor.isActive('blockquote'),
 				  },
 				  {
-					icon: 'separator',
-					title: 'Horizontal Rule',
+					icon: 'horizontal_rule',
+					title: 'Separador',
 					action: () => this.editor.chain().focus().setHorizontalRule().run(),
 				  },
 				  {
 					type: 'divider',
 				  },
 				  {
-					icon: 'text-wrap',
-					title: 'Hard Break',
+					icon: 'wrap_text',
+					title: 'Quebra de linha',
 					action: () => this.editor.chain().focus().setHardBreak().run(),
 				  },
 				  {
-					icon: 'format-clear',
-					title: 'Clear Format',
+					icon: 'format_clear',
+					title: 'Limpar formatação',
 					action: () => this.editor.chain().focus().clearNodes().unsetAllMarks().run(),
 				  },
 				  {
 					type: 'divider',
 				  },
 				  {
-					icon: 'arrow-go-back-line',
+					icon: 'undo',
 					title: 'Undo',
 					action: () => this.editor.chain().focus().undo().run(),
 				  },
 				  {
-					icon: 'arrow-go-forward-line',
+					icon: 'redo',
 					title: 'Redo',
 					action: () => this.editor.chain().focus().redo().run(),
 				  },
