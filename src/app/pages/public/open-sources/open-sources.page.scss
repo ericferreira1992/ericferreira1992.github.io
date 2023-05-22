@@ -5,6 +5,12 @@
 	--repoTitleLeftBarColor: #{darken($secondaryColor, 5)};
 	--repoContentLeftBarColor: #{$secondaryColor};
 }
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--repoTitleLeftBarColor: #{lighten($darkSecondaryColor, 5)};
+		--repoContentLeftBarColor: #{$darkSecondaryColor};
+	}
+}
 
 .open-sources-page {
 

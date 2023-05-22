@@ -1,8 +1,8 @@
 :root {
 	--primaryColor: #{$primaryColor};
 	--secondaryColor: #{$secondaryColor};
-	--backgroundColor: #{$backgroundColor};
 	--tertiaryColor: #{$tertiaryColor};
+	--backgroundColor: #{$backgroundColor};
 	--titleColor: #{$titleColor};
 	--textColor: #{$textColor};
 	--linkColor: #{$linkColor};
@@ -14,5 +14,17 @@
 	--swiftColor: #{$swiftColor};
 	--phpColor: #{$phpColor};
 	--csharpColor: #{$csharpColor};
+
 }
 
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--primaryColor: #{$darkPrimaryColor};
+		--secondaryColor: #{$darkSecondaryColor};
+		--tertiaryColor: #{$darkTertiaryColor};
+		--backgroundColor: #{$darkBackgroundColor};
+		--titleColor: #{$darkTitleColor};
+		--textColor: #{$darkTextColor};
+		--linkColor: #{$darkLinkColor};
+	}
+}

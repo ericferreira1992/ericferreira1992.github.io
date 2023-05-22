@@ -9,6 +9,16 @@
 	--menuActiveTextColor: #0093A5;
 }
 
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--menuTopLineColor: #{$darkPrimaryColor};
+		--menuBackgroundColor: #{$darkSecondaryColor};
+		--menuHoverBackgroundColor: #{lighten($darkSecondaryColor, 2)};
+		--menuTextColor: #EEEEEE;
+		--menuActiveTextColor: #0093A5;
+	}
+}
+
 .public-page {
 	margin: auto;
 	width: 100%;
@@ -87,6 +97,7 @@
 			left: calc(100% / 2);
 			transform: translateX(-50%);
 			position: relative;
+			transition-duration: 500ms;
 		}
 
 		> ul {

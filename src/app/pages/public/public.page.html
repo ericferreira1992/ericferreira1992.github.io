@@ -5,6 +5,9 @@
 			<h1>Eric Ferreira</h1>
 			<span>Desenvolvedor</span>
 			<ul class="social-medias">
+				<li>
+					<div class="theme-toggle" [class]="{'dark': isDarkMode}" (click)="toggleDarkMode()"></div>
+				</li>
 				<li @for="item of socialMediaItems">
 					<a [href]="item.url" target="_blank">
 						<img [src]="'assets/img/icons/' + item.imgName + '.svg#dark'" [alt]="item.name">

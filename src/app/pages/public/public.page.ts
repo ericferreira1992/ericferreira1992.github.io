@@ -5,11 +5,11 @@ import { AuthAdminDialog } from 'src/app/dialogs/auth-admin/auth-admin.dialog';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 
 @PreparePage({
-    template: require('./public.page.html'),
-    style: require('./public.page.scss'),
+	template: require('./public.page.html'),
+	style: require('./public.page.scss'),
 })
 export class PublicPage extends Page {
-    public menu = {
+	public menu = {
 		items: [
 			{ text: 'Blog', path: 'blog' },
 			{ text: 'Sobre mim', path: 'about-me' },
@@ -29,17 +29,24 @@ export class PublicPage extends Page {
 	private signing: boolean = false;
 	private signouting: boolean = false;
 	private menuExpanded: boolean = false;
-	
-    public get routePath() { return Router.currentPath; }
-    public get isLogged() { return this.authService.isLogged; }
 
-    constructor(
+	public get routePath() { return Router.currentPath; }
+	public get isLogged() { return this.authService.isLogged; }
+	public get isDarkMode() {
+		let hasDefinedThemeType = document.querySelectorAll('[data-theme]').length > 0;
+		if (hasDefinedThemeType) {
+			return document.querySelectorAll('[data-theme="dark"]').length > 0;
+		}
+		return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+	}
+
+	constructor(
 		private authService: FirebaseAuthService,
 		private dialogBuilder: DialogBuilder
 	) {
-        super();
+		super();
 	}
-	
+
 	public async login() {
 		if (!this.isLogged) {
 			this.render(() => this.signing = true);
@@ -51,7 +58,7 @@ export class PublicPage extends Page {
 			});
 		}
 	}
-	
+
 	public logout() {
 		if (!this.signouting) {
 			this.render(() => this.signouting = true);
@@ -78,6 +85,17 @@ export class PublicPage extends Page {
 	public toggleMenu() {
 		this.render(() => {
 			this.menuExpanded = !this.menuExpanded;
+		});
+	}
+
+	public toggleDarkMode() {
+		this.render(() => {
+			if (this.isDarkMode) {
+				document.documentElement.setAttribute('data-theme', 'light');
+			}
+			else {
+				document.documentElement.setAttribute('data-theme', 'dark');
+			}
 		});
 	}
 }

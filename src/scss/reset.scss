@@ -13,6 +13,7 @@ html, body {
 	background: var(--backgroundColor);
 	color: var(--textColor);
 	font-weight: 300;
+	transition-duration: 500ms;
 }
 
 body > nimble-root,

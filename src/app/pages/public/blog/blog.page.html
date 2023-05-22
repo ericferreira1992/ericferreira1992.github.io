@@ -1,7 +1,4 @@
-<div  class="blog-page">
-	<div @if="loading" class="loading">
-		Carregando artigos...
-	</div>
+<div class="blog-page">
 
 	<ul @if="!loading && adminIsLogged" class="admin-blog-menu">
 		<li @for="item of adminMenu">
@@ -9,6 +6,41 @@
 		</li>
 	</ul>
 
+	<h3 class="mb-8">Projetos pessoais</h3>
+	<div class="projects mb-10">
+		<article @for="project of projects" class="animated fadeIn">
+			<h4>
+				<a [href]="'https://github.com/ericferreira1992/' + project.identifier" [target]="'_blank'">
+					{{project.title}}
+				</a>
+			</h4>
+			<a [href]="'https://github.com/ericferreira1992/' + project.identifier" [target]="'_blank'">
+				<img src="/assets/img/projects/{{project.identifier}}.png" alt="{{project.title}}"/>
+			</a>
+			<div>
+				<p>
+					<span>{{project.description}}</span>
+				</p>
+			</div>
+			<div>
+				<a @if="project.demoPage" [href]="project.demoPage" [target]="'_blank'">
+					Página
+				</a>
+				<a [href]="'https://github.com/ericferreira1992/' + project.identifier" [target]="'_blank'">
+					Github
+				</a>
+			</div>
+		</article>
+
+		<a class="text-center w-100" href="https://github.com/ericferreira1992" [target]="'_blank'">
+			Ver mais
+		</a>
+	</div>
+
+	<h3 class="mb-8">Artigos</h3>
+	<div @if="loading" class="loading mt-10">
+		Carregando artigos...
+	</div>
 	<div @if="!loading" class="articles">
 		<article @for="article of articles" class="animated fadeIn">
 			<h4>

@@ -3,7 +3,7 @@
 	transition-duration: 300ms;
 
 	> path {
-		stroke: $primaryColor;
+		stroke: var(--primaryColor);
 		stroke-linecap: round;
 		stroke-width: 3px;
 

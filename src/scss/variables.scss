@@ -1,3 +1,5 @@
+
+// NORMAL COLORS
 $primaryColor: #00E1FC;
 $secondaryColor: #F0F0F0;
 $tertiaryColor: #EEEEEE;
@@ -5,6 +7,15 @@ $backgroundColor: #FFFFFF;
 $titleColor: #414141;
 $textColor: #4F4F4F;
 $linkColor: darken($primaryColor, 18);
+
+// DARK
+$darkPrimaryColor: $primaryColor;
+$darkSecondaryColor: #444444;
+$darkTertiaryColor: #777777;
+$darkBackgroundColor: #333333;
+$darkTitleColor: #BBBBBB;
+$darkTextColor: #EEEEEE;
+$darkLinkColor: lighten($primaryColor, 18);
 
 // LANGUAGES
 $tsColor: #3178C6;
