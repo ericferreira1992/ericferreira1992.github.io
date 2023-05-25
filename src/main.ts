@@ -16,7 +16,7 @@ NimbleApp.config({
 		ArticleService,
 	]
 }).pluginGoogleAnalytics({
-	id: 'UA-137851769-1',
+	id: 'G-MZ8XBP3BJF',
 	disabled: !enviroment.production
 })
 .start();
